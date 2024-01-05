@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .test-results {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .test-results th, .test-results td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .test-results th {
+            background-color: #f2f2f2;
+        }
+
+        .failed {
+            color: red;
+        }
+
+        .passed {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <img src="../java/HTML/Skyline.jpeg" alt="SkylineIndex" width="50%" height="50%">
+    <h2>Test Results</h2>
+    <table class="test-results">
+        <tr>
+            <th>Test Name</th>
+            <th>Result</th>
+            <th>Details</th>
+        </tr>
+    </table>
+
+    <script>
+        var testResults = [
+            { testName: 'Test 1', result: 'Passed', details: 'No issues' },
+            { testName: 'Test 2', result: 'Failed', details: 'Assertion error' },
+            // Voeg hier meer resultaten toe indien nodig
+        ];
+
+        function populateTestResults() {
+            var tableBody = document.querySelector('.test-results');
+
+            testResults.forEach(function (result) {
+                var row = tableBody.insertRow(-1);
+
+                var testNameCell = row.insertCell(0);
+                testNameCell.textContent = result.testName;
+
+                var resultCell = row.insertCell(1);
+                resultCell.textContent = result.result;
+                resultCell.className = result.result.toLowerCase(); // Voeg een klasse toe voor opmaak
+
+                var detailsCell = row.insertCell(2);
+                detailsCell.textContent = result.details;
+            });
+        }
+
+        window.onload = populateTestResults;
+    </script>
+</body>
+</html>
