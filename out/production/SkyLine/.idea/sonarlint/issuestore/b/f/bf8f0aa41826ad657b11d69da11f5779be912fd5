@@ -1,0 +1,12 @@
+
+0
+java:S1220""Move this file to a named package.
+V
+java:S1118":Add a private constructor to hide the implicit public one.(Šµá+8â¤«°Í1
+m
+java:S1871"KThis branch's code block is the same as the block for the branch on line 6.(¬ñÃíýÿÿÿÿ8Š¥«°Í1
+m
+java:S1871
+"KThis branch's code block is the same as the block for the branch on line 6.(‘Äœòúÿÿÿÿ8Š¥«°Í1
+L	java:S106"+Replace this use of System.out by a logger.(ÎÃÝöþÿÿÿÿ8š¥«°Í1
+L	java:S106"+Replace this use of System.out by a logger.(¤¹­‹ÿÿÿÿÿ8š¥«°Í1
