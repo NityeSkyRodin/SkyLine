@@ -9,8 +9,5 @@
         <module name="Skyline" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Skyline" target="19" />
-    </bytecodeTargetLevel>
   </component>
 </project>

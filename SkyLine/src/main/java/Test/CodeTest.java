@@ -11,8 +11,13 @@ public class CodeTest {
         x = 1;
     }
 
-    @BeforeTest("test2")
+    @BeforeTest("test1")
     public static void beforeTest() {
+        x = 2-1;
+    }
+
+    @BeforeTest("test2")
+    public static void beforeTest1() {
         x = 2-1;
     }
 
@@ -20,11 +25,6 @@ public class CodeTest {
     public static void beforeTest2(){
         string = "test";
         x = 10;
-    }
-
-    @AfterEach
-    public static void afterEach() {
-        x --;
     }
 
     @UnitTest

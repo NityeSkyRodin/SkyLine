@@ -100,6 +100,7 @@ private static final List<TestResults> testResults = new ArrayList();
     }
 
     private void generateHtmlReport() {
-        HtmlGenerator.generateHtmlToFile(testResults, "../HTML/SkylineIndex.html");
+        HtmlGenerator htmlGenerator = new HtmlGenerator();
+        htmlGenerator.generateHtmlToFile(testResults, "SkylineIndex.html");
     }
 }
