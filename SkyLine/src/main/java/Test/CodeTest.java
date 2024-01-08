@@ -41,4 +41,19 @@ public class CodeTest {
     public static void test3(){
         Assert.assertEquals("test", string);
     }
+
+    @UnitTest
+    public static void test4(){
+        Assert.assertEquals("", x);
+    }
+
+    @EndToEndTest
+    public static void test5(){
+        Assert.assertEquals(1, x);
+    }
+
+    @EndToEndTest
+    public static void test6(){
+        Assert.assertEquals(1, x);
+    }
 }
