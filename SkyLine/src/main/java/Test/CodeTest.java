@@ -6,9 +6,6 @@ public class CodeTest {
 
     private static String string = "";
 
-    @Main
-    public void main() {
-    }
     @BeforeEach
     public static void beforeEach() {
         x = 1;
