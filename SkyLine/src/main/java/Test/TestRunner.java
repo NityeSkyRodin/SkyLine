@@ -1,15 +1,50 @@
 package Test;
 
-import HTML.HtmlGenerator;
-
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestRunner {
-private static final List<TestResults> testResults = new ArrayList();
 
-    public void runTests(Class<?> testClass) {
+    private final List<TestResults> testResults = new ArrayList<>();
+
+    public void runTests() {
+        try {
+            // Hier kun je je testpakket of testklassen specificeren
+            discoverAndRunTests();
+            generateHtmlReport();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void discoverAndRunTests() {
+        try {
+            // Dynamisch de klasse laden op basis van het pakket
+            Class<?>[] classes = TestClassFinder.findTestClasses();
+
+            for (Class<?> testClass : classes) {
+                if (isMainAnnotated(testClass)) {
+                    runTestsForClass(testClass);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean isMainAnnotated(Class<?> testClass) {
+        Method[] methods = testClass.getDeclaredMethods();
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(Main.class)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void runTestsForClass(Class<?> testClass) {
         SkylinePrinter.printASCIIArtFromFile();
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
         System.out.println("Running tests for " + testClass.getName() + "\n");
@@ -41,7 +76,7 @@ private static final List<TestResults> testResults = new ArrayList();
         try {
             // Execute the actual test
             testMethod.invoke(testInstance);
-            testResults.add(new TestResults(testMethod.getName(),"Passed" , 0, "", ""));
+            testResults.add(new TestResults(testMethod.getName(), "Passed", 0, "", ""));
             System.out.println(testMethod.getName() + " - Passed");
         } catch (Exception e) {
             testResults.add(new TestResults(testMethod.getName(), "Failed", 0, "", ""));
@@ -79,7 +114,6 @@ private static final List<TestResults> testResults = new ArrayList();
 
     private void executeBeforeTestMethod(Object testInstance, Class<?> testClass, String value) {
         for (Method method : testClass.getDeclaredMethods()) {
-
             BeforeTest beforeTest = method.getAnnotation(BeforeTest.class);
             if (beforeTest == null) {
                 continue;
@@ -87,7 +121,6 @@ private static final List<TestResults> testResults = new ArrayList();
 
             if (method.isAnnotationPresent(BeforeTest.class)) {
                 if (beforeTest.value().equals(value)) {
-
                     try {
                         // Execute @BeforeEach method for each test
                         method.invoke(testInstance);

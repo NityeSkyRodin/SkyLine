@@ -1,9 +1,8 @@
 package Test;
 
-public class Main {
+import java.lang.annotation.*;
 
-    public static void main(String[] args) {
-        TestRunner testRunner = new TestRunner();
-        testRunner.runTests(CodeTest.class);
-    }
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Main {
 }
